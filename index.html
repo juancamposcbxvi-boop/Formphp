@@ -1,29 +1,22 @@
-<html>
-<head>
-</head>
-<body>
-<form name="empleados" class="formulario" action="informacion.php" method="POST">
-<table class="tabla" border="1">
-<tr>
-<td>Identificacion_Empleado</td>
-<td> <input type="text" name="Identificacion"> </td>
-</tr>
-<tr>
-<td>Nombres Apellidos</td>
-<td> <input type="text" name="NomApellidos"></td>
-</tr>
-<tr>
-<td>Cargo a Desempeñar</td>
-<td> <input type="text" name="Cargo"></td>
-</tr>
-<tr>
-<td>Salario</td>
-<td> <input type="text" name="Salario"></td>
-</tr>
-<tr>
-<td> <input type="submit" values="Enviar Datos" class="boton"> </td>
-</tr>
-</table>
-</form>
-</body>
-</html>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $product1_name = $_POST['product1_name'];
+    $product1_price = floatval($_POST['product1_price']);
+    $product2_name = $_POST['product2_name'];
+    $product2_price = floatval($_POST['product2_price']);
+    $product3_name = $_POST['product3_name'];
+    $product3_price = floatval($_POST['product3_price']);
+
+    $total = $product1_price + $product2_price + $product3_price;
+    $discount = $total * 0.016;
+    $total_to_pay = $total - $discount;
+
+    echo "<h2>Resultados</h2>";
+    echo "Producto 1: $product1_name<br>";
+    echo "Producto 2: $product2_name<br>";
+    echo "Producto 3: $product3_name<br>";
+    echo "Suma de precios: $" . number_format($total, 2) . "<br>";
+    echo "Descuento (1.6%): $" . number_format($discount, 2) . "<br>";
+    echo "Total a pagar: $" . number_format($total_to_pay, 2);
+}
+?>
